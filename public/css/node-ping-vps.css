@@ -5,3 +5,8 @@
 .cus-thin { font-weight: 300; }
 
 .cus-grey { color: #616161; }
+.cus-grey-light { color: #9e9e9e; }
+
+.cus-min-width { min-width: 450px; }
+
+.cus-mb-0 { margin-bottom: 0px; }

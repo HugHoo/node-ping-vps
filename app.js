@@ -13,10 +13,15 @@ app.get("/", function(req, res){
     res.sendFile("index.html", { root: app.get("views") });
 });
 
-let serverList = JSON.parse(fs.readFileSync("./config/servers.json"));
+app.get("/sls", function(req, res){
+    console.log("ajax query : server list.");
+    console.log(req.query);
 
-site.pings(serverList).then(function(res){
-    console.log(res);
+    let serverList = JSON.parse(fs.readFileSync("./config/servers.json"));
+
+    site.pings(serverList).then(function(sres){
+        res.send(JSON.stringify(sres));
+    });    
 });
 
 app.listen(3000);
