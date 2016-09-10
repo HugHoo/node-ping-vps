@@ -50,7 +50,7 @@
             <div class="row" ng-hide="!serverList">
                 <div class="col l5 m8 s12 offset-l3 offset-m2">
                     <div class="collection">
-                        <a class="collection-item waves-effect" ng-repeat="(key,item) in serverList | orderBy:orderBy">
+                        <a ng-click="serverDetail(key)" class="collection-item waves-effect" ng-repeat="(key,item) in serverList | orderBy:orderBy">
                             {{item.host}}
                             <span class="new badge {{item.color}}" data-badge-caption="">
                                 Speed : {{item.alive ? item.time_avg + ' ms' : 'timeout' }}
