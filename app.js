@@ -1,43 +1,23 @@
 'use strict'
 
-let ping = require("ping");
-let iconv = require("iconv-lite");
-let util = require('util');
+let fs = require("fs");
+let site = require("./routes/site");
+let express = require("express");
+let app = express();
 
-let hosts = [
-    "hk01.ftq.pw",
-    "hk02.ftq.pw",
-    "hk03.ftq.pw",
-    "hk04.ftq.pw",
-];
+app.use(express.static("public"));
+app.set("views", __dirname + "/views");
+app.set("public", __dirname + "/public");
 
-let promiseList = [];
-let resList = [];
-
-hosts.forEach(function(host){
-    promiseList.push(ping.promise.probe(host)
-        .then(function(res){
-            let buf = new Buffer(res.output, "hex");
-            let tmp_out = iconv.decode(buf, "gbk");
-            // console.log(tmp_out);
-
-            let obj = {
-                host: host,
-                alive: res.alive,
-                ip: tmp_out.match(/\[(\d{0,3}\.\d{0,3}\.\d{0,3}\.\d{0,3})\]/i)[1],
-                time_min: tmp_out.match(/最短\s{0,}=\s{0,}(\d{0,4})ms/i)[1],
-                time_max: tmp_out.match(/最长\s{0,}=\s{0,}(\d{0,4})ms/i)[1],
-                time_avg: tmp_out.match(/平均\s{0,}=\s{0,}(\d{0,4})ms/i)[1]
-            }
-
-            // console.log(obj);
-            resList.push(obj);
-        })
-    );
-
+app.get("/", function(req, res){
+    res.sendFile("index.html", { root: app.get("views") });
 });
 
-Promise.all(promiseList).then(function(){
-    // console.log("finally done.");
-    console.log(util.inspect(resList, true, null, true));
-})
+let serverList = JSON.parse(fs.readFileSync("./config/servers.json"));
+
+site.pings(serverList).then(function(res){
+    console.log(res);
+});
+
+app.listen(3000);
+console.log("Listening at http://*:3000.");

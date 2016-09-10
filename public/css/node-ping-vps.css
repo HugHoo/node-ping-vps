@@ -1,0 +1,7 @@
+.debug { border: 1px dotted red; }
+
+.cus-lighter { font-weight: 100; }
+.cus-light { font-weight: 200; }
+.cus-thin { font-weight: 300; }
+
+.cus-grey { color: #616161; }
