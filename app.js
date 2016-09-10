@@ -23,6 +23,7 @@ hosts.forEach(function(host){
 
             let obj = {
                 host: host,
+                alive: res.alive,
                 ip: tmp_out.match(/\[(\d{0,3}\.\d{0,3}\.\d{0,3}\.\d{0,3})\]/i)[1],
                 time_min: tmp_out.match(/最短\s{0,}=\s{0,}(\d{0,4})ms/i)[1],
                 time_max: tmp_out.match(/最长\s{0,}=\s{0,}(\d{0,4})ms/i)[1],
