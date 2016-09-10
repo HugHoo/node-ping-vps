@@ -1,0 +1,29 @@
+{
+  "name": "node-ping-vps",
+  "version": "1.0.0",
+  "description": "node-ping-vps",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HugHoo/node-ping-vps.git"
+  },
+  "keywords": [
+    "node",
+    "ping",
+    "vps"
+  ],
+  "author": "hugo hoo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HugHoo/node-ping-vps/issues"
+  },
+  "homepage": "https://github.com/HugHoo/node-ping-vps#readme",
+  "dependencies": {
+    "footprint": "^0.1.0",
+    "node-ping": "^0.1.0",
+    "ping": "^0.2.0"
+  }
+}
