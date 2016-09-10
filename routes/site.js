@@ -9,7 +9,7 @@ function pings(hosts){
     let resList = [];
 
     hosts.forEach(function(host){
-        promiseList.push(ping.promise.probe(host, { timeout : 5 })
+        promiseList.push(ping.promise.probe(host, { timeout : 2 })
             .then(function(res){
                 let buf = new Buffer(res.output, "hex");
                 let tmp_out = iconv.decode(buf, "gbk");

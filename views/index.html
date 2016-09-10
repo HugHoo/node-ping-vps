@@ -19,12 +19,18 @@
     <div class="container">
 
         <header>
-            <h4 class="cus-thin cus-grey">Node Ping VPS</h4>
+            <div class="row">
+                <div class="col l5 m8 s12 offset-l3 offset-m2">
+                    <h4 class="cus-thin cus-grey">Node Ping VPS</h4>
+                </div>
+            </div>
         </header>
 
         <main>
             <div class="row cus-mb-0">
-                <div class="col l5 m8 s12">
+                <div class="col l5 m8 s12 offset-l3 offset-m2">
+                    &nbsp;
+                    <span class="cus-grey-light">22 / 22</span>
                     <form class="right">
                         <span class="cus-grey-light">Sort by: </span>
                         &nbsp;&nbsp;&nbsp;                        
@@ -36,8 +42,13 @@
                     </form>
                 </div>
             </div>
-            <div class="row">
-                <div class="col l5 m8 s12">
+            <div class="row cus-mb-0" ng-hide="serverList">
+                <div class="col l5 m8 s12 offset-l3 offset-m2">
+                    <div class="progress"><div class="indeterminate"></div></div>
+                </div>
+            </div>
+            <div class="row" ng-hide="!serverList">
+                <div class="col l5 m8 s12 offset-l3 offset-m2">
                     <div class="collection">
                         <a class="collection-item waves-effect" ng-repeat="(key,item) in serverList | orderBy:orderBy">
                             {{item.host}}
