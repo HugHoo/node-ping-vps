@@ -36,10 +36,10 @@ app.controller("appCtrl", function($scope, $http){
         $scope.serverList = data;
     });
 
-    $scope.serverDetail = function(key){
-        console.log("show detail: " + $scope.serverList[key].host);
+    $scope.serverDetail = function(ip){
+        console.log("show detail: " + ip);
 
-        let $detailDialog = $("<span>IP : &nbsp;" + $scope.serverList[key].ip + "</span>")
+        let $detailDialog = $("<span>IP : &nbsp;" + ip + "</span>")
         Materialize.toast($detailDialog, 4000);
     }
 });
