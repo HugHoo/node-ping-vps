@@ -1,3 +1,5 @@
+'use strict'
+
 let ping = require("ping");
 let iconv = require("iconv-lite");
 let util = require('util');
