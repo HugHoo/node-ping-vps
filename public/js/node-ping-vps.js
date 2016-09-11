@@ -16,6 +16,8 @@ app.controller("appCtrl", function($scope, $http){
     }
 
     $scope.orderBy = "time_avg";
+    $scope.serverRawList = [];
+    $scope.serverList = [];
 
     $http({
         url: "sls",
@@ -24,16 +26,36 @@ app.controller("appCtrl", function($scope, $http){
             hello: "Hola!"
         }
     }).success(function(data, status){
+        $scope.serverRawList = data;
+
+        let promiseList = [];
         for(let i = 0; i < data.length; i++){
             let elem = data[i];
-            data[i].color = !data[i].alive ? "grey darken-3" : colorObj.getColor(data[i].time_avg);
-            data[i].time_max = Number(data[i].time_max);
-            data[i].time_min = Number(data[i].time_min);
-            data[i].time_avg = Number(data[i].time_avg);
+            promiseList.push(new Promise(function(resolve, reject){
+                $http({
+                    url: "sgls",
+                    method: "get",
+                    params: {
+                        host: elem
+                    }
+                }).success(function(data, status){
+                    console.log(data);
+
+                    data.color = !data.alive ? "grey darken-3" : colorObj.getColor(data.time_avg);
+                    data.time_max = Number(data.time_max);
+                    data.time_min = Number(data.time_min);
+                    data.time_avg = Number(data.time_avg);
+
+                    $scope.serverList.push(data);
+                    resolve();
+                });
+            }));
         }
 
+        Promise.all(promiseList).then(()=>{ console.log("all done."); });
+
         console.log(data);
-        $scope.serverList = data;
+        // $scope.serverList = data;
     });
 
     $scope.serverDetail = function(ip){

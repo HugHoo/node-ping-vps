@@ -19,9 +19,21 @@ app.get("/sls", function(req, res){
 
     let serverList = JSON.parse(fs.readFileSync("./config/servers.json"));
 
-    site.pings(serverList).then(function(sres){
-        res.send(JSON.stringify(sres));
-    });    
+    // site.pings(serverList).then(function(sres){
+    //     res.send(JSON.stringify(sres));
+    // }); 
+    res.send(JSON.stringify(serverList));   
+});
+
+// single server : sgls
+app.get("/sgls", function(req, res){
+    console.log("ajax query : single server.");
+    console.log("query params" + JSON.stringify(req.query));
+    site.ping(req.query.host)
+        .then(function(sres){
+            console.log(sres);
+            res.send(sres);
+        });
 });
 
 app.listen(3000);

@@ -30,7 +30,7 @@
             <div class="row cus-mb-0">
                 <div class="col l5 m8 s12 offset-l3 offset-m2">
                     &nbsp;
-                    <span class="cus-grey-light">22 / 22</span>
+                    <span class="cus-grey-light">{{serverList.length}} / {{serverRawList.length}}</span>
                     <form class="right">
                         <span class="cus-grey-light">Sort by: </span>
                         &nbsp;&nbsp;&nbsp;                        
@@ -42,12 +42,14 @@
                     </form>
                 </div>
             </div>
-            <div class="row cus-mb-0" ng-hide="serverList">
+            <div class="row cus-mb-0" ng-hide="serverList.length == serverRawList.length">
                 <div class="col l5 m8 s12 offset-l3 offset-m2">
-                    <div class="progress"><div class="indeterminate"></div></div>
+                    <div class="progress">
+                        <div class="determinate" style="width: {{(serverList.length / serverRawList.length) * 100}}%"></div>
+                    </div>
                 </div>
             </div>
-            <div class="row" ng-hide="!serverList">
+            <div class="row" ng-hide="serverList.length == 0">
                 <div class="col l5 m8 s12 offset-l3 offset-m2">
                     <div class="collection">
                         <a ng-click="serverDetail(item.ip)" class="collection-item waves-effect" ng-repeat="(key,item) in serverList | orderBy:orderBy">
