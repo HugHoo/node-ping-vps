@@ -55,7 +55,6 @@ app.controller("appCtrl", function($scope, $http){
         Promise.all(promiseList).then(()=>{ console.log("all done."); });
 
         console.log(data);
-        // $scope.serverList = data;
     });
 
     $scope.serverDetail = function(ip){
