@@ -26,7 +26,11 @@
                         Node Ping VPS
                         <span class="right" style="font-size: 50%; cursor: pointer; display: inline-block;" ng-hide="!isSelectFile || isDisable">
                             <span ng-click="switchToSelectFilePage()">
-                                <i class="material-icons circle grey lighten-3 light-blue-text text-lighten-3 waves-effect" style="padding: 5px 6px 5px 5px; font-size: 50%;">keyboard_backspace</i>
+                                <i class="material-icons circle cus-grey-light waves-effect tooltipped" 
+                                style="font-size:100%; padding: 5px;"
+                                data-position="left" data-tooltip="Back & Select">
+                                    subdirectory_arrow_left
+                                </i>
                             </span>
                         </span>
                     </h4>
@@ -60,7 +64,7 @@
                     &nbsp;
                     <span class="cus-grey-light">
                         {{serverList.length}} / {{serverRawList.length}}
-                        <i class="material-icons waves-effect circle" ng-hide="isDisable" style="font-size:90%; padding: 2px; margin-left: 5px;" ng-click="refresh()">autorenew</i>
+                        <i class="material-icons waves-effect circle" ng-hide="isDisable" style="font-size:90%; padding: 2px; margin-left: 5px;" ng-click="refresh()">sync</i>
                     </span>
                     <form class="right">
                         <span class="cus-grey-light">Sort by: </span>
