@@ -15,9 +15,9 @@ app.get("/", function(req, res){
 
 app.get("/sls", function(req, res){
     console.log("ajax query : server list.");
-    console.log(req.query);
+    console.log(req.query.fileName);
 
-    let serverList = JSON.parse(fs.readFileSync("./config/servers.json"));
+    let serverList = JSON.parse(fs.readFileSync(app.get("public") + "/fls/" + req.query.fileName));
 
     // site.pings(serverList).then(function(sres){
     //     res.send(JSON.stringify(sres));
@@ -34,6 +34,20 @@ app.get("/sgls", function(req, res){
             console.log(sres);
             res.send(sres);
         });
+});
+
+// server file list : fls
+app.get("/fls", function(req, res){
+    console.log("ajax query : server file list.");
+    fs.readdir(app.get("public") + "/fls", function(err, files){
+        if(err){
+            console.log(err.stack);
+        }else{
+            console.log(files);
+            res.send(files);
+        }
+    });
+
 });
 
 app.listen(3000);

@@ -8,8 +8,7 @@
 
     <link rel="stylesheet" href="css/materialize.css">
     <link rel="stylesheet" href="css/node-ping-vps.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="js/angular.min.js"></script>
@@ -25,23 +24,24 @@
                 <div class="col l5 m8 s12 offset-l3 offset-m2">
                     <h4 class="cus-thin cus-grey">
                         Node Ping VPS
-                        <span class="right light-blue-text" style="font-size: 50%; cursor: pointer;">
-                            server.json
-                            <i class="material-icons" style="font-size: 50%;">subdirectory_arrow_left</i>
+                        <span class="right" style="font-size: 50%; cursor: pointer; display: inline-block;" ng-hide="!isSelectFile || isDisable">
+                            <span ng-click="switchToSelectFilePage()">
+                                <i class="material-icons circle grey lighten-3 light-blue-text text-lighten-3 waves-effect" style="padding: 5px 6px 5px 5px; font-size: 50%;">keyboard_backspace</i>
+                            </span>
                         </span>
                     </h4>
                 </div>
             </div>
         </header>
 
-        <!--<main>
+        <main ng-hide="isSelectFile">
             <div class="row">
                 <div class="col l5 m8 s12 offset-l3 offset-m2">
-                    <div class="card-panel grey lighten-5 z-depth-1 hoverable waves-effect" style="display: block; cursor: pointer;">
+                    <div class="card-panel grey lighten-5 z-depth-1 hoverable waves-effect" style="display: block; cursor: pointer;" ng-repeat="(key, item) in fileList" ng-click="selectFile(item)">
                         <div class="row cus-mb-0 valign-wrapper">
                             <div class="col s12">
                                 <i class="material-icons cus-grey" style="font-size: 80%;">subdirectory_arrow_right</i> &nbsp;
-                                <span class="cus-grey">Servers.json</span>
+                                <span class="cus-grey">{{item}}</span>
 
                                 <span class="right">
                                     <i class="material-icons light-blue-text text-lighten-3 circle grey lighten-3 waves-effect" style="vertical-align: inherit; font-size:130%; padding: 2px;">create</i>&nbsp;&nbsp;
@@ -52,13 +52,16 @@
                     </div>
                 </div>
             </div>
-        </main>-->
+        </main>
 
-        <main>
+        <main ng-hide="!isSelectFile">
             <div class="row cus-mb-0">
                 <div class="col l5 m8 s12 offset-l3 offset-m2">
                     &nbsp;
-                    <span class="cus-grey-light">{{serverList.length}} / {{serverRawList.length}}</span>
+                    <span class="cus-grey-light">
+                        {{serverList.length}} / {{serverRawList.length}}
+                        <i class="material-icons waves-effect circle" ng-hide="isDisable" style="font-size:90%; padding: 2px; margin-left: 5px;" ng-click="refresh()">autorenew</i>
+                    </span>
                     <form class="right">
                         <span class="cus-grey-light">Sort by: </span>
                         &nbsp;&nbsp;&nbsp;                        
