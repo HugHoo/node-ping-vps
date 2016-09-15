@@ -62,6 +62,12 @@ app.controller("appCtrl", function($scope, $http, $timeout){
         pings($scope.curFileName);
     }
 
+    $scope.addNewFile = function(){
+        console.log("new file modal visible.");
+
+        $("#addNewFileModal").openModal();
+    }
+
     function pings(fileName){
         console.log("Select file : " + fileName);
 

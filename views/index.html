@@ -16,12 +16,12 @@
     <script type="text/javascript" src="js/node-ping-vps.js"></script>
 </head>
 
-<body class="cus-min-width" ng-app="app" ng-controller="appCtrl">
+<body ng-app="app" ng-controller="appCtrl">
     <div class="container">
 
         <header>
             <div class="row">
-                <div class="col l5 m8 s12 offset-l3 offset-m2">
+                <div class="col l6 m8 s12 offset-l3 offset-m2">
                     <h4 class="cus-thin cus-grey">
                         Node Ping VPS
                         <span class="right" style="font-size: 50%; cursor: pointer; display: inline-block;" ng-hide="!isSelectFile || isDisable">
@@ -33,6 +33,15 @@
                                 </i>
                             </span>
                         </span>
+
+                        <span class="right" style="font-size: 50%; cursor: pointer; display: inline-block;" ng-hide="isSelectFile">
+                            <span ng-click="addNewFile()">
+                                <i class="material-icons circle cus-grey-light waves-effect" 
+                                style="font-size:100%; padding: 5px;">
+                                    attach_file
+                                </i>
+                            </span>
+                        </span>
                     </h4>
                 </div>
             </div>
@@ -40,7 +49,7 @@
 
         <main ng-hide="isSelectFile">
             <div class="row">
-                <div class="col l5 m8 s12 offset-l3 offset-m2">
+                <div class="col l6 m8 s12 offset-l3 offset-m2">
                     <div class="card-panel grey lighten-5 z-depth-1 hoverable waves-effect" style="display: block; cursor: pointer;" ng-repeat="(key, item) in fileList" ng-click="selectFile(item)">
                         <div class="row cus-mb-0 valign-wrapper">
                             <div class="col s12">
@@ -48,7 +57,7 @@
                                 <span class="cus-grey">{{item}}</span>
 
                                 <span class="right">
-                                    <i class="material-icons light-blue-text text-lighten-3 circle grey lighten-3 waves-effect" style="vertical-align: inherit; font-size:130%; padding: 2px;">create</i>&nbsp;&nbsp;
+                                    <i class="material-icons light-blue-text text-lighten-3 circle grey lighten-3 waves-effect" style="vertical-align: inherit; font-size:130%; padding: 2px;">search</i>&nbsp;&nbsp;
                                     <i class="material-icons red-text text-lighten-3 circle grey lighten-3 waves-effect" style="vertical-align: inherit; font-size:130%; padding: 2px;">delete</i>
                                 </span>
                             </div>
@@ -60,7 +69,7 @@
 
         <main ng-hide="!isSelectFile">
             <div class="row cus-mb-0">
-                <div class="col l5 m8 s12 offset-l3 offset-m2">
+                <div class="col l6 m8 s12 offset-l3 offset-m2">
                     &nbsp;
                     <span class="cus-grey-light">
                         {{serverList.length}} / {{serverRawList.length}}
@@ -78,14 +87,14 @@
                 </div>
             </div>
             <div class="row cus-mb-0" ng-hide="serverList.length == serverRawList.length">
-                <div class="col l5 m8 s12 offset-l3 offset-m2">
+                <div class="col l6 m8 s12 offset-l3 offset-m2">
                     <div class="progress">
                         <div class="determinate" style="width: {{(serverList.length / serverRawList.length) * 100}}%"></div>
                     </div>
                 </div>
             </div>
             <div class="row" ng-hide="serverList.length == 0">
-                <div class="col l5 m8 s12 offset-l3 offset-m2">
+                <div class="col l6 m8 s12 offset-l3 offset-m2">
                     <div class="collection">
                         <a ng-click="serverDetail(item.ip)" class="collection-item waves-effect" ng-repeat="(key,item) in serverList | orderBy:orderBy">
                             {{item.host}}
@@ -100,5 +109,30 @@
         </main>
 
     </div>
+
+<!-- modal space -->
+
+    <div id="addNewFileModal" class="modal" style="width: 55%; max-width: 473px;">
+        <div class="modal-content">
+            <h5 class="cus-grey cus-thin">Add or Upload</h5>
+            <div class="file-field input-field" style="margin-top: 30px;">
+                <div class="btn" style="height: 2rem; line-height: 2rem; padding: 0 1rem;">
+                    <span>File</span>
+                    <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input type="text" class="file-path validate" style="height: 2rem;">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-action modal-close waves-effect waves-green btn-flat">
+                Okay
+            </a>
+        </div>
+    </div>
+
+<!-- modal space end -->
+
 </body>
 </html>
