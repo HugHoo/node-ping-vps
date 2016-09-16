@@ -3,9 +3,11 @@
 let fs = require("fs");
 let site = require("./routes/site");
 let express = require("express");
+let bodyParser = require("body-parser");
 let app = express();
 
 app.use(express.static("public"));
+app.use(bodyParser.json({ limit: "50mb" }));
 app.set("views", __dirname + "/views");
 app.set("public", __dirname + "/public");
 
@@ -47,7 +49,16 @@ app.get("/fls", function(req, res){
             res.send(files);
         }
     });
+});
 
+// upload file : upld
+app.post("/upld", function(req, res){
+    console.log("ajax query : upload file.");
+    console.log(req.body);
+
+    fs.writeFileSync(app.get("public") + "/fls/" + req.body.fileName, JSON.stringify(req.body.file));
+
+    res.send(req.body.fileName);
 });
 
 app.listen(3000);

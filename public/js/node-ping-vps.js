@@ -68,6 +68,33 @@ app.controller("appCtrl", function($scope, $http, $timeout){
         $("#addNewFileModal").openModal();
     }
 
+    $scope.startUploadFile = function(){
+        // let fileName = elem.files[0];
+        let $elem = $("#file");
+        let f = $elem[0].files[0];
+        console.log($elem[0].files[0]);
+
+        let fr = new FileReader();
+        fr.onloadend = function(){
+            let content = fr.result;
+            console.log(content);
+
+            $http({
+                url: "upld",
+                method: "post",
+                header: { "Content-Type" : undefined },
+                data: {
+                    fileName: f.name,
+                    file: JSON.parse(content)
+                }
+            }).success(function(data){ 
+                $scope.fileList.push(data);
+            });
+        }
+
+        fr.readAsText(f);
+    }
+
     function pings(fileName){
         console.log("Select file : " + fileName);
 

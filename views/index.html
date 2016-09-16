@@ -118,7 +118,7 @@
             <div class="file-field input-field" style="margin-top: 30px;">
                 <div class="btn" style="height: 2rem; line-height: 2rem; padding: 0 1rem;">
                     <span>File</span>
-                    <input type="file">
+                    <input id="file" type="file">
                 </div>
                 <div class="file-path-wrapper">
                     <input type="text" class="file-path validate" style="height: 2rem;">
@@ -126,8 +126,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <a class="modal-action modal-close waves-effect waves-green btn-flat">
-                Okay
+            <a class="waves-effect waves-green btn-flat modal-action modal-close" ng-click="startUploadFile()">
+                upload
             </a>
         </div>
     </div>
