@@ -1,28 +1,4 @@
 [
-    // "jp01.ipip.pm",
-    // "jp02.ipip.pm",
-    // "jp03.ipip.pm",
-    // "jp04.ipip.pm",
-    // "jp05.ipip.pm",
-    // "jp06.ipip.pm",
-    // "hk01.ipip.pm",
-    // "hk02.ipip.pm",
-    // "hk03.ipip.pm",
-    // "hk04.ipip.pm",
-    // "sg01.ipip.pm",
-    // "sg02.ipip.pm",
-    // "sg03.ipip.pm",
-    // "tw01.ipip.pm",
-    // "tw02.ipip.pm",
-    // "kr01.ipip.pm",
-    // "kr02.ipip.pm",
-    // "us01.ipip.pm",
-    // "us02.ipip.pm",
-    // "us03.ipip.pm",
-    // "au01.ipip.pm",
-    // "uk01.ipip.pm",
-    // "Just kidding you!!",
-    
     "jp01.ipip.pm",
     "jp02.ipip.pm",
     "jp03.ipip.pm",
@@ -48,5 +24,4 @@
     "ca01.ipip.pm",
     "ru01.ipip.pm",
     "cn01.ipip.pm"
-    
 ]
